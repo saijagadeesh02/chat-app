@@ -2,6 +2,7 @@ import { io } from "socket.io-client";
 import { useEffect, useState } from "react";
 
 import SendMessage  from "../SendMessage/SendMessage";
+import config from "../Config";
 
 const SERVER = "http://localhost";
 const PORT = "5000";
@@ -14,11 +15,11 @@ function createNewConnection () {
 function SendConnection () {
 
     const [socket, setSocket] = useState();
-    // console.log(`The SID of created socket is ${socket.id}`)
+    console.log("some message")
     useEffect(()=>{
         let curSocket = createNewConnection();
 
-        curSocket.on("my_event_response", (data)=>{
+        curSocket.on(config.messageEvent, (data)=>{
             console.log(`Message from server: ${data}`)
         })
         

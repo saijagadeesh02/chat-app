@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import config from "../Config";
 
 
 
@@ -16,7 +17,7 @@ function SendMessage ({socket}) {
         // Prepare the final packet with sid and message
         var finalPacket = { "sid" : socket.id, "message" : message}
         // Send the message to the server
-        socket.emit("my_event", finalPacket)
+        socket.emit(config.messageEvent, finalPacket)
         // Clear the input box
         setMessage("")
         // Append the latest message to the list of messages
