@@ -3,7 +3,7 @@ import config from "../Config";
 
 
 
-function SendMessage ({socket}) {
+function SendMessage ({socket, roomId}) {
     
     const [message, setMessage] = useState("");
     const [messageStack, setMessageStack] = useState([]);
@@ -15,7 +15,7 @@ function SendMessage ({socket}) {
 
     function emitMessage(){
         // Prepare the final packet with sid and message
-        var finalPacket = { "sid" : socket.id, "message" : message}
+        var finalPacket = { "sid" : socket.id, "room_id": roomId, "message" : message}
         // Send the message to the server
         socket.emit(config.messageEvent, finalPacket)
         // Clear the input box
